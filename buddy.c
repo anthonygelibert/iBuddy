@@ -29,8 +29,8 @@ typedef struct buddy_tp {
     struct buddy_tp *next;
 }buddy_tp;
 
-int buddy_act(struct buddy_tp *buddy);
-int buddy_deact(struct buddy_tp *buddy);
+static int buddy_act(struct buddy_tp *buddy);
+static int buddy_deact(struct buddy_tp *buddy);
 
 buddy_t* buddy_init()
 {
@@ -101,7 +101,7 @@ int buddy_count(buddy_t *buddy)
     return count;
 }
 
-int buddy_act(struct buddy_tp *buddy)
+static int buddy_act(struct buddy_tp *buddy)
 {
     buddy_tp* bd = (buddy_tp*) buddy;
     if(bd->udev != NULL)
@@ -122,7 +122,7 @@ int buddy_act(struct buddy_tp *buddy)
     return BUDDY_CORRECT;
 }
 
-int buddy_deact(struct buddy_tp *buddy)
+static int buddy_deact(struct buddy_tp *buddy)
 {
     buddy_tp* bd = (buddy_tp*) buddy;
     if(bd->udev == NULL)
