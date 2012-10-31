@@ -1,5 +1,3 @@
-/* vim: set sts=4 sw=4 noet : */
-
 /*      protocol.h
  *
  *      Copyright 2011 Francesc Gordillo i Cortínez <frangor@gawab.com>
@@ -21,8 +19,16 @@
  */
 
 #ifndef PROTOCOL_H
-#define PROTOCOL_H 1
+#define PROTOCOL_H
 
-void buddy_msg(struct usb_dev_handle *udev, unsigned char msg);
+#ifndef PROTOCOL_C
+#define PUBLIC extern
+#else
+#define PUBLIC
+#endif
+
+PUBLIC void buddy_msg(struct usb_dev_handle *udev, unsigned char msg);
+
+#undef PUBLIC
 
 #endif

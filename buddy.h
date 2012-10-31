@@ -1,5 +1,3 @@
-/* vim: set sts=4 sw=4 noet : */
-
 /*      buddy.h
  *
  *      Copyright 2011 Francesc Gordillo i Cortínez <frangor@gawab.com>
@@ -27,6 +25,12 @@
 
 #ifndef BUDDY_H
 #define BUDDY_H 1
+
+#ifndef BUDDY_C
+#define PUBLIC extern
+#else
+#define PUBLIC
+#endif
 
 /**
  * Array of I-Buddy devices.
@@ -58,7 +62,7 @@ typedef unsigned int buddy_light;
  * Defines the position of the wings.
  */
 typedef unsigned int buddy_wing;
- 
+
 #define BUDDY_DOWN 1
 #define	BUDDY_UP 2
 
@@ -84,11 +88,11 @@ typedef unsigned int buddy_position;
 /**
  * Allocate and init a buddy array. The buddy array holds usb information
  * of all I-Buddy devices. You need to activate the devices you want to work.
- * 
+ *
  * @return Buddy array.
  * @see buddy_free
  */
-buddy_t* buddy_init();
+PUBLIC buddy_t* buddy_init();
 
 /**
  * Count the number of I-Buddy devices on a buddy array.
@@ -96,7 +100,7 @@ buddy_t* buddy_init();
  * @param buddy Buddy array.
  * @return Number of devices.
  */
-int buddy_count(buddy_t *buddy);
+PUBLIC int buddy_count(buddy_t *buddy);
 
 /**
  * Enables all devices specified in the buddy array.
@@ -104,7 +108,7 @@ int buddy_count(buddy_t *buddy);
  * @param buddy Buddy array.
  * @return Error handling.
  */
-int buddy_activate_all(buddy_t *buddy);
+PUBLIC int buddy_activate_all(buddy_t *buddy);
 
 /**
  * Enables a device specified.
@@ -113,7 +117,7 @@ int buddy_activate_all(buddy_t *buddy);
  * @param device Device number to enable (0 the first device).
  * @return Error handling.
  */
-int buddy_activate(buddy_t *buddy, int device);
+PUBLIC int buddy_activate(buddy_t *buddy, int device);
 
 /**
  * Change the state of the actived i-Buddy devices specified on buddy array.
@@ -125,11 +129,11 @@ int buddy_activate(buddy_t *buddy, int device);
  * @param position Position of the boddy.
  * @return Error handling.
  */
-int buddy_state(buddy_t *buddy,
-		buddy_heart heart,
-		buddy_light light,
-		buddy_wing wing,
-		buddy_position position);
+PUBLIC int buddy_state(buddy_t *buddy,
+        buddy_heart heart,
+        buddy_light light,
+        buddy_wing wing,
+        buddy_position position);
 
 
 /**
@@ -137,7 +141,7 @@ int buddy_state(buddy_t *buddy,
  *
  * @param buddy Buddy array.
  */
-void buddy_reset(buddy_t *buddy);
+PUBLIC void buddy_reset(buddy_t *buddy);
 
 /**
  * Disable a devices specified.
@@ -146,7 +150,7 @@ void buddy_reset(buddy_t *buddy);
  * @param device Device number to deactivate (0 the first device).
  * @return 0 to indicate proper operation.
  */
-int buddy_deactivate(buddy_t *buddy, int device);
+PUBLIC int buddy_deactivate(buddy_t *buddy, int device);
 
 /**
  * Disable all devices specified in the buddy array.
@@ -154,13 +158,15 @@ int buddy_deactivate(buddy_t *buddy, int device);
  * @param buddy Buddy array.
  * @return Error handling.
  */
-int buddy_deactivate_all(buddy_t *buddy);
+PUBLIC int buddy_deactivate_all(buddy_t *buddy);
 
 /**
  * Completely free resources allocated of a buddy array.
  *
  * @param buddy Buddy array.
  */
-void buddy_free(buddy_t *buddy);
+PUBLIC void buddy_free(buddy_t *buddy);
+
+#undef PUBLIC
 
 #endif

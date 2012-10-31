@@ -1,5 +1,3 @@
-/* vim: set sts=4 sw=4 noet : */
-
 /*      libuddy.c
  *
  *      Copyright 2011 Francesc Gordillo i Cortínez <frangor@gawab.com>
@@ -21,22 +19,19 @@
  */
 
 #include <usb.h>
+#define PROTOCOL_C
 #include "protocol.h"
 
 
 void buddy_msg(struct usb_dev_handle *udev, unsigned char msg)
 {
-	if(udev == NULL)
-		return;
+    if (udev == NULL)
+        return;
 
-	unsigned char setup[] = {0x22, 0x09, 0x00, 0x02,
-				0x01, 0x00, 0x00, 0x00};
-	unsigned char header[] = {0x55, 0x53, 0x42, 0x43,
-				0x00, 0x40, 0x02, 0xFF};
-	header[7] = msg;
-	
-	usb_control_msg(udev, 0x21, 0x09, 0x02, 0x01, (char *) setup,
-			sizeof(setup), 0);
-	usb_control_msg(udev, 0x21, 0x09, 0x02, 0x01, (char *) header,
-			sizeof(header), 0);
+    unsigned char setup[] = {0x22, 0x09, 0x00, 0x02, 0x01, 0x00, 0x00, 0x00};
+    unsigned char header[] = {0x55, 0x53, 0x42, 0x43, 0x00, 0x40, 0x02, 0xFF};
+    header[7] = msg;
+
+    usb_control_msg(udev, 0x21, 0x09, 0x02, 0x01, (char *) setup, sizeof(setup), 0);
+    usb_control_msg(udev, 0x21, 0x09, 0x02, 0x01, (char *) header, sizeof(header), 0);
 }

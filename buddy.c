@@ -20,8 +20,9 @@
  */
 
 #include <usb.h>
-#include "buddy.h"
 #include "protocol.h"
+#define BUDDY_C
+#include "buddy.h"
 
 typedef struct buddy_tp {
     struct usb_device *dev;
