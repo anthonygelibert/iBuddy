@@ -197,16 +197,16 @@ int buddy_state(buddy_t *buddy,
     if (bd == NULL)
         return BUDDY_CORRECT;
 
-    if (heart < 0 || heart > 1)
+    if (heart > 1)
         return BUDDY_ERROR_HEART_OUT;
 
-    if (light < 0 || light > 7)
+    if (light > 7)
         return BUDDY_ERROR_LIGHT_OUT;
 
-    if (wing < 0 || wing > 2)
+    if (wing > 2)
         return BUDDY_ERROR_WING_OUT;
 
-    if (position < 0 || position > 2)
+    if (position > 2)
         return BUDDY_ERROR_POSITION_OUT;
 
     unsigned char msg;
