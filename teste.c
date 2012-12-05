@@ -32,7 +32,7 @@ int main(void)
     buddy_activate_all(buddy);
 
     printf("Blue\n");
-    buddy_state(buddy, BUDDY_OFF, BUDDY_BLUE, BUDDY_DOWN, BUDDY_OFF);
+    buddy_state(buddy, BUDDY_OFF, BUDDY_BLUE, BUDDY_OFF, BUDDY_OFF);
     sleep(5);
     printf("Green\n");
     buddy_state(buddy, BUDDY_ON, BUDDY_GREEN, BUDDY_OFF, BUDDY_RIGHT);
@@ -41,10 +41,14 @@ int main(void)
     buddy_state(buddy, BUDDY_OFF, BUDDY_RED, BUDDY_OFF, BUDDY_LEFT);
     sleep(5);
     printf("Yellow\n");
-    buddy_state(buddy, BUDDY_ON, BUDDY_YELLOW, BUDDY_UP, BUDDY_RIGHT);
+    buddy_state(buddy, BUDDY_ON, BUDDY_YELLOW, BUDDY_OFF, BUDDY_RIGHT);
     sleep(5);
+    printf("Magenta\n");
+    buddy_state(buddy, BUDDY_OFF, BUDDY_MAGENTA, BUDDY_OFF, BUDDY_RIGHT);
+    sleep(5);
+    printf("White\n");
+    buddy_state(buddy, BUDDY_ON, BUDDY_WHITE, BUDDY_OFF, BUDDY_RIGHT);
 
     buddy_reset(buddy);
-
     buddy_free(buddy);
 }
