@@ -2,39 +2,39 @@
 # 2012-06-12 — Anthony GELIBERT
 
 # Warnings
-WARNING+=-Wall -Wextra
+WARNING := -W -Wall -Wextra
 # Standards
-STD?=--std=gnu99
+STD := --std=gnu99
 # Debug
-DEBUG?=0
+DEBUG ?= 0
 ifeq ($(DEBUG),1)
 	DBG = -g3 -DDEBUG
 else
 	DBG = -DNDEBUG
 endif
 # Optimization
-OPTIM?=-O2
+OPTIM := -O2
 
 # CC Flags
-CFLAGS=$(OPTIM) $(WARNING) $(DBG) $(STD) $(shell pkg-config --cflags libusb)
+CFLAGS += $(OPTIM) $(WARNING) $(DBG) $(STD) $(shell pkg-config --cflags libusb)
 # LD Flags
-LDFLAGS=$(CFLAGS) $(shell pkg-config --libs libusb)
+LDFLAGS += $(CFLAGS) $(shell pkg-config --libs libusb)
 
 # Sources
-SRC=$(wildcard *.c)
+SRC := $(wildcard *.c)
 # Objects
-OBJ=$(SRC:.c=.o)
+OBJ := $(SRC:.c=.o)
 # Products
-EXEC=teste
+EXEC := teste
+
+.PHONY: all clean distclean
 
 all:$(EXEC)
 
 $(EXEC): $(OBJ)
 
-.PHONY: clean mrproper
-
 clean:
-	rm -f $(OBJ)
+	@- $(RM) $(OBJ)
+	@- $(RM) $(EXEC)
 
-mrproper: clean
-	rm -f $(EXEC)
+distclean: clean
