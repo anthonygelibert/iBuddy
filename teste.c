@@ -17,7 +17,7 @@
  *      MA 02110-1301, USA.
  */
 
-
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -27,8 +27,17 @@ int main(void)
 {
     buddy_t* buddy;
 
+    printf("=== iBuddy Test === \n");
+    printf("Scanning USB buses for iBuddy devices...\n");
     buddy = buddy_init();
 
+    if (!buddy)
+    {
+        fprintf(stderr, "Sorry, I can't find any iBuddy...\n");
+        return EXIT_FAILURE;
+    }
+
+    printf("I found at least one iBuddy !!!\n");
     buddy_activate_all(buddy);
 
     printf("Blue\n");
@@ -51,4 +60,6 @@ int main(void)
 
     buddy_reset(buddy);
     buddy_free(buddy);
+
+    return EXIT_SUCCESS;
 }
